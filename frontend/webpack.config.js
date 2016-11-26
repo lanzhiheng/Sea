@@ -6,7 +6,8 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js"
+    publicPath: '/dist/',
+    filename: 'bundle.js'
   },
 
 
@@ -17,7 +18,8 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         options: {
-          presets: ['es2015', 'react']
+          presets: ['es2015', 'react'],
+          compact: false
         },
       },
       {
@@ -37,7 +39,7 @@ module.exports = {
 
   devServer: {
     contentBase: path.join(__dirname, "dist"),
-    publicPath: '/dist',
+    publicPath: '/dist/',
     compress: true,
     port: 9000
   }

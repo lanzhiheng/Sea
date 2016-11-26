@@ -18,7 +18,7 @@ class CategoriesList extends Component {
     return(
       <ul className="categories">
         {categories.map((x) => {
-          return (<Category onCategoryClick={this.onCategoryClick}>{x}</Category>);
+          return (<Category key={x} onCategoryClick={this.onCategoryClick}>{x}</Category>);
         })}
       </ul>
     );
