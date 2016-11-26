@@ -1,0 +1,10 @@
+.category-item {
+  padding: 5px 10px;
+  list-style: none;
+  border: 1px solid #000;
+  cursor: pointer;
+
+  &:hover {
+    background: #00b7ff;
+  }
+}
