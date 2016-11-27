@@ -8,8 +8,10 @@ class ArticleList extends Component {
   }
 
   onArticleClick(targetArticle) {
-    const articleText = targetArticle.innerHTML;
-    console.log(articleText);
+    let activeComponent = document.getElementsByClassName('articles')[0].getElementsByClassName('active')[0];
+    activeComponent.className = activeComponent.className.split(/\s+/).filter((x) => {return x !== 'active'}).join(' ');
+    let articleClassName = targetArticle.className;
+    targetArticle.className = articleClassName + " active";
   }
 
 
@@ -17,11 +19,21 @@ class ArticleList extends Component {
     const {articles} = this.props;
 
     return (
-      <ul className='articles'>
-        {articles.map((x) => {
-          return (<Article key={x} onArticleClick={this.onArticleClick}>{x}</Article>);
-        })}
-      </ul>
+      <div className='articles'>
+        <div className='articles-add'>
+          <a href="#">New Article</a>
+        </div>
+        <ul>
+          {articles.map((x, index) => {
+            if (index == 0) {
+               return (<Article key={index} isActive={true} onArticleClick={this.onArticleClick}>{x}</Article>);
+            } else {
+              return (<Article key={index} onArticleClick={this.onArticleClick}>{x}</Article>);
+            }
+
+          })}
+        </ul>
+      </div>
     );
   }
 }

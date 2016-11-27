@@ -9,10 +9,11 @@ class Article extends Component {
   }
 
   render() {
-    const {onArticleClick} = this.props;
+    const {onArticleClick, isActive} = this.props;
+    let className = isActive ? "article-item active" : "article-item"
 
     return (
-      <li ref={(target) => {this.article = target}} onClick={() => {onArticleClick(this.article);}} className="article-item" >
+      <li ref={(target) => {this.article = target}} onClick={() => {onArticleClick(this.article);}} className={className} >
       {this.props.children}
       </li>
     );

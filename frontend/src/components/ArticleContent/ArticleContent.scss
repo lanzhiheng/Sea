@@ -1,0 +1,59 @@
+$hover-color: #eee;
+
+.article-content {
+  vertical-align: top;
+  display: inline-block;
+  border: 1px solid $hover-color;
+  width: 50%;
+
+  input {
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 40px;
+    border: none;
+    width: 100%;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  ul {
+    border-top: 1px solid $hover-color;
+    border-bottom: 1px solid $hover-color;
+    background: #dedede;
+
+    li {
+      float: right;
+      padding: 10px;
+      box-sizing: border-box;
+      display: inline-block;
+      font-size: 14px;
+      text-decoration: none;
+
+
+      &:hover {
+        color: #dedede;
+        cursor: pointer;
+        background: #555;
+      }
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+  }
+  textarea {
+    border: 1px solid transparent;
+    height: 100vh;
+    box-sizing: border-box;
+    width: 100%;
+    resize: none;
+    padding: 10px;
+    font-size: 15px;
+    &:focus {
+      outline: none;
+    }
+  }
+}

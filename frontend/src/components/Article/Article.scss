@@ -1,9 +1,20 @@
+$hover-color: #eee;
+$active-color: #00b7ff;
+
 .article-item {
-  padding: 5px 10px;
+  padding: 20px 10px;
   list-style: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   cursor: pointer;
 
   &:hover {
-    background: #00b7ff;
+    background: $hover-color;
+  }
+
+  &.active {
+    color: #fff;
+    background: $active-color;
   }
 }

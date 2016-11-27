@@ -9,10 +9,11 @@ class Category extends Component {
   }
 
   render() {
-    const {onCategoryClick} = this.props;
+    const {onCategoryClick, isActive} = this.props;
+    let className = isActive ? "category-item active" : "category-item"
 
     return (
-      <li ref={(target) => {this.category = target}} onClick={() => {onCategoryClick(this.category);}} className="category-item" >
+      <li ref={(target) => {this.category = target}} onClick={() => {onCategoryClick(this.category);}} className={className} >
       {this.props.children}
       </li>
     );

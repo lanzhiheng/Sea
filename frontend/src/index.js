@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './static/font-awesome.min.css'
+
 import CategoriesList from './components/CategoriesList/CategoriesList';
 import ArticleList from './components/ArticleList/ArticleList';
-import './index.css';
+import ArticleContent from './components/ArticleContent/ArticleContent';
+import './index.scss';
+
 
 const categories = [
   'JavaScript',
@@ -22,6 +26,7 @@ ReactDOM.render(
   <div>
     <CategoriesList categories={categories}></CategoriesList>
     <ArticleList articles={articles}></ArticleList>
+    <ArticleContent></ArticleContent>
   </div>,
   document.getElementById('root')
 );
