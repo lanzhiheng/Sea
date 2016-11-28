@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './static/font-awesome.min.css'
 
 import CategoriesList from './components/CategoriesList/CategoriesList';
 import ArticleList from './components/ArticleList/ArticleList';
