@@ -2,14 +2,21 @@ extends ../layout
 
 block content
   h1 #{title}
-  form#formAddArticle(name="addarticle", method="post", action="/articles")
-    label(for="title") Title:
-    input(type="text", placeholder="article title", name="title")
-    br
-    label(for="body") Body:
-    textarea(name="body", rows="10", cols="80")
-    br
-    label(for="isPost") isPost?:
-    input(type="checkbox", name="isPost")
-    br
-    button(type="submit") Add
+  div.article-input
+    form#formAddArticle(name="addarticle", method="post", action="/articles")
+      label(for="title") Title:
+      input(type="text", placeholder="article title", name="title")
+      br
+      label(for="body") Body:
+      textarea(name="body", rows="10", cols="80")
+      br
+      label(for="tags") tags:
+      input(type="text", placeholder="article tags", name="tags")
+      br
+      label(for="category") category:
+      input(type="text", placeholder="article category", name="category")
+      br
+      label(for="isPost") isPost?:
+      input(type="checkbox", name="isPost")
+      br
+      button(type="submit") Add

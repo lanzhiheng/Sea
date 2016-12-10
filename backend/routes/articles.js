@@ -29,19 +29,33 @@ router.get('/', function(req, res, next) {
   });
 });
 
-
 router.get('/new', (req, res) => {
   res.render('articles/new', {title: "Add New Articles"});
+});
+
+
+router.get('/:id', (req, res) => {
+  const _id = req.params.id;
+  mongoose.model('Article').find({_id}, (err, articles) => {
+    if (err) {
+      console.err('err');
+    } else {
+      res.send(articles);
+    }
+  });
 });
 
 
 router.post('/', (req, res, next) => {
   let title = req.body.title;
   let createdTime = req.body.cratedTime;
+  let tags = req.body.tags.split(',').map((a) => {return a.trim()});
+  let category = req.body.category;
   let body = req.body.body;
   let isPost = req.body.isPost;
 
-  mongoose.model('Article').create({title, createdTime, body, isPost}, (err, article) => {
+  mongoose.model('Article').create(
+    {title, createdTime, body, isPost, category, tags}, (err, article) => {
     if (err) {
       res.send("There was a problem adding the information to the database.");
     } else {
