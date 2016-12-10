@@ -1,8 +1,8 @@
-let express = require('express'),
-    router = express.Router(),
-    mongoose = require('mongoose'), //mongo connection
-    bodyParser = require('body-parser'), //parses information from POST
-    methodOverride = require('method-override'); //used to manipulate POST
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose'); //mongo connection
+const bodyParser = require('body-parser'); //parses information from POST
+const methodOverride = require('method-override'); //used to manipulate POST
 
 router.use(bodyParser.urlencoded({ extended: true }));
 
@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/new', (req, res) => {
-  res.render('articles/new', {title: "Add New Articles"});
+  res.render('articles/new', {title: 'Add New Articles'});
 });
 
 
@@ -49,7 +49,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res, next) => {
   let title = req.body.title;
   let createdTime = req.body.cratedTime;
-  let tags = req.body.tags.split(',').map((a) => {return a.trim()});
+  let tags = req.body.tags.split(',').map((a) => {return a.trim();});
   let category = req.body.category;
   let body = req.body.body;
   let isPost = req.body.isPost;
@@ -60,7 +60,7 @@ router.post('/', (req, res, next) => {
       res.send("There was a problem adding the information to the database.");
     } else {
       console.log('POST creating new article: ' + article);
-      res.redirect("/articles");
+      res.redirect('/articles');
     }
   });
 });
