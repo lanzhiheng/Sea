@@ -16,14 +16,13 @@ class CategoriesList extends Component {
   }
 
   render() {
-    const {categories} = this.props;
     return(
       <div className="categories">
         <div className="categories-add">
           <a href="#">New Category</a>
         </div>
         <ul>
-          {categories.map((x, index) => {
+          {this.props.categories && this.props.categories.map((x, index) => {
             if (index == 0) {
               return (<Category key={index} isActive={true} onCategoryClick={this.onCategoryClick}>{x}</Category>);
             } else {

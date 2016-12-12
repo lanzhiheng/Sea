@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
     if (err) {
       console.err('err');
     } else {
-      res.send(articles);
+      res.send({data: articles});
     }
   });
 });

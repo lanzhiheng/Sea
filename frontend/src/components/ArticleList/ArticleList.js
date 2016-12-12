@@ -14,21 +14,18 @@ class ArticleList extends Component {
     targetArticle.className = articleClassName + " active";
   }
 
-
   render() {
-    const {articles} = this.props;
-
     return (
       <div className='articles'>
         <div className='articles-add'>
           <a href="#">New Article</a>
         </div>
         <ul>
-          {articles.map((x, index) => {
+          {this.props.articles && this.props.articles.map((x, index) => {
             if (index == 0) {
-               return (<Article key={index} isActive={true} onArticleClick={this.onArticleClick}>{x}</Article>);
+               return (<Article key={index} isActive={true} onArticleClick={this.onArticleClick}>{x.title}</Article>);
             } else {
-              return (<Article key={index} onArticleClick={this.onArticleClick}>{x}</Article>);
+              return (<Article key={index} onArticleClick={this.onArticleClick}>{x.title}</Article>);
             }
 
           })}

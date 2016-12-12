@@ -1,7 +1,7 @@
-const express = require('express'),
-      router = express.Router(),
-      _ = require('lodash'),
-      mongoose = require('mongoose'); //mongo connection
+const express = require('express');
+const router = express.Router();
+const _ = require('lodash');
+const mongoose = require('mongoose'); //mongo connection
 
 // Get all categories of articles
 router.get('/', function(req, res) {
@@ -9,13 +9,13 @@ router.get('/', function(req, res) {
     if (article.category) {
       return article.category;
     }
-  }
+  };
 
   const callback = (err, articles) => {
     if (err) {
-      console.err('err');
+      console.error('err');
     } else {
-      res.send(_.compact(articles.map(mapArticle)));
+      res.send({data: _.compact(articles.map(mapArticle))});
     }
   };
 
@@ -29,7 +29,7 @@ router.get('/:category', function(req, res) {
   const category = req.params.category;
   mongoose.model('Article').find({category}, (err, articles) => {
     if (err) {
-      console.err('err');
+      console.error('err');
     } else {
       res.send(articles);
     }
