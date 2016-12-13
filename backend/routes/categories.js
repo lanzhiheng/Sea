@@ -25,13 +25,13 @@ router.get('/', function(req, res) {
 
 
 /* GET home page. */
-router.get('/:category', function(req, res) {
+router.get('/:category/articles', function(req, res) {
   const category = req.params.category;
   mongoose.model('Article').find({category}, (err, articles) => {
     if (err) {
       console.error('err');
     } else {
-      res.send(articles);
+      res.send({data: articles});
     }
   });
 });
