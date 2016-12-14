@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './ArticleContent.scss';
-import Category from '../Category/Category';
 
 class ArticleContent extends Component {
   constructor() {
@@ -10,12 +9,12 @@ class ArticleContent extends Component {
   render() {
     return(
       <div className="article-content">
-        <input type="text"/>
+        <input type="text" value={this.props.articleTitle} />
         <ul>
           <li>Save</li>
           <li>Post</li>
         </ul>
-        <textarea />
+        <textarea value={this.props.children} />
       </div>
     );
   }

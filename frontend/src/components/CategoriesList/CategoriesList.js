@@ -8,13 +8,6 @@ class CategoriesList extends Component {
     super();
   }
 
-  onCategoryClick(targetCategory) {
-    let activeComponent = document.getElementsByClassName('categories')[0].getElementsByClassName('active')[0];
-    activeComponent.className = activeComponent.className.split(/\s+/).filter((x) => {return x !== 'active'}).join(' ');
-    let categoryClassName = targetCategory.className;
-    targetCategory.className = categoryClassName + " active";
-  }
-
   render() {
     return(
       <div className="categories">
@@ -24,9 +17,9 @@ class CategoriesList extends Component {
         <ul>
           {this.props.categories && this.props.categories.map((x, index) => {
             if (index == 0) {
-              return (<Category key={index} isActive={true} onCategoryClick={this.onCategoryClick}>{x}</Category>);
+              return (<Category key={index} isActive={true} onClick={this.props.onCategoryClick}>{x}</Category>);
             } else {
-              return (<Category key={index} onCategoryClick={this.onCategoryClick}>{x}</Category>);
+              return (<Category key={index} onClick={this.props.onCategoryClick}>{x}</Category>);
             }
 
           })}

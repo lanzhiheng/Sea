@@ -3,7 +3,7 @@ extends ../layout
 block content
   h1 #{title}
   div.article-input
-    form#formAddArticle(name="addarticle", method="post", action="/articles")
+    form#formAddArticle(name="addarticle", method="post", action="/api/articles")
       label(for="title") Title:
       input(type="text", placeholder="article title", name="title")
       br

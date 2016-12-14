@@ -36,11 +36,11 @@ router.get('/new', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const _id = req.params.id;
-  mongoose.model('Article').find({_id}, (err, articles) => {
+  mongoose.model('Article').find({_id}, (err, article) => {
     if (err) {
       console.err('err');
     } else {
-      res.send(articles);
+      res.send({data: article});
     }
   });
 });
@@ -60,7 +60,7 @@ router.post('/', (req, res, next) => {
       res.send("There was a problem adding the information to the database.");
     } else {
       console.log('POST creating new article: ' + article);
-      res.redirect('/articles');
+      res.redirect('/api/articles');
     }
   });
 });

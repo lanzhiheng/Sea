@@ -23,6 +23,7 @@ const fetchCategoriesUtil = () => {
     }).then(response => response.json()).then(
       (json) => {
         dispatch(receiveCategories(json.data));
+        return json;
       }
     );
   };

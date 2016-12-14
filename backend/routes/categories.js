@@ -15,7 +15,7 @@ router.get('/', function(req, res) {
     if (err) {
       console.error('err');
     } else {
-      res.send({data: _.compact(articles.map(mapArticle))});
+      res.send({data: _.uniqBy(_.compact(articles.map(mapArticle)))});
     }
   };
 

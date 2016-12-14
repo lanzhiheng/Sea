@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Category.scss'
+import './Category.scss';
 
 
 class Category extends Component {
@@ -9,11 +9,12 @@ class Category extends Component {
   }
 
   render() {
-    const {onCategoryClick, isActive} = this.props;
-    let className = isActive ? "category-item active" : "category-item"
+    const { isActive } = this.props;
+    let className = isActive ? 'category-item active' : 'category-item';
+
 
     return (
-      <li ref={(target) => {this.category = target}} onClick={() => {onCategoryClick(this.category);}} className={className} >
+      <li onClick={this.props.onClick} className={className} >
       {this.props.children}
       </li>
     );

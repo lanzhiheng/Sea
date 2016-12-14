@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Article.scss'
+import './Article.scss';
 
 
 class Article extends Component {
@@ -9,11 +9,11 @@ class Article extends Component {
   }
 
   render() {
-    const {onArticleClick, isActive} = this.props;
-    let className = isActive ? "article-item active" : "article-item"
+    const { isActive } = this.props;
+    let className = isActive ? 'article-item active' : 'article-item';
 
     return (
-      <li ref={(target) => {this.article = target}} onClick={() => {onArticleClick(this.article);}} className={className} >
+      <li onClick={(e) => this.props.onClick(e, this.props.id)} className={className} >
       {this.props.children}
       </li>
     );
