@@ -29,7 +29,10 @@ class Panel extends Component {
     const {dispatch} = this.props;
     const targetCategory = e.target;
     const selectCategory = targetCategory.innerHTML;
-    dispatch(fetchArticlesByCategories(selectCategory));
+    dispatch(fetchArticlesByCategories(selectCategory)).then((json) => {
+      let firstArticleId = json.data[0]['_id'];
+      dispatch(fetchArticleContent(firstArticleId));
+    });
 
     let activeComponent = document.getElementsByClassName('categories')[0].getElementsByClassName('active')[0];
     activeComponent.className = activeComponent.className.split(/\s+/).filter((x) => {return x !== 'active';}).join(' ');
@@ -54,7 +57,7 @@ class Panel extends Component {
       <div>
         <CategoriesList onCategoryClick={this.onCategoryClick} categories={categories}></CategoriesList>
         <ArticleList onArticleClick={this.onArticleClick} articles={articles}></ArticleList>
-        <ArticleContent articleTitle={article.title} >{article.body}</ArticleContent>
+        <ArticleContent articleTitle={article.title}>{article.body}</ArticleContent>
       </div>
     );
   }

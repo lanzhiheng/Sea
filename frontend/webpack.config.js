@@ -9,7 +9,7 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'bundle.js'
   },
-
+  devtool: 'eval-source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
 
 
   module: {
@@ -18,7 +18,7 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         options: {
-          presets: ['es2015', 'react'],
+          presets: ['es2015', 'react', 'stage-2', 'stage-1'],
           compact: false
         },
       },
