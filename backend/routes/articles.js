@@ -49,10 +49,12 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res, next) => {
   let title = req.body.title;
   let createdTime = req.body.cratedTime;
-  let tags = req.body.tags.split(',').map((a) => {return a.trim();});
+  let tags = req.body.tags ? req.body.tags.split(',').map((a) => {return a.trim();}) : [];
   let category = req.body.category;
   let body = req.body.body;
   let isPost = req.body.isPost;
+
+  console.log("-------------------------------", title);
 
   mongoose.model('Article').create(
     {title, createdTime, body, isPost, category, tags}, (err, article) => {

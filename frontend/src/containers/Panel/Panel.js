@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../../actions/categories';
-import { fetchArticlesByCategories, fetchArticleContent } from '../../actions/articles';
+import { fetchArticlesByCategories, fetchArticleContent, saveArticle } from '../../actions/articles';
 import './Panel.scss';
 import CategoriesList from '../../components/CategoriesList/CategoriesList';
 import ArticleList from '../../components/ArticleList/ArticleList';
@@ -10,8 +10,6 @@ import ArticleContent from '../../components/ArticleContent/ArticleContent';
 class Panel extends Component {
   constructor() {
     super();
-    this.onCategoryClick = this._onCategoriesClick.bind(this);
-    this.onArticleClick = this._onArticlesClick.bind(this);
   }
 
   componentDidMount() {
@@ -20,12 +18,12 @@ class Panel extends Component {
       const firstCategory = json.data[0];
       dispatch(fetchArticlesByCategories(firstCategory)).then((json) => {
         const firstArticle = json.data[0];
-        dispatch(fetchArticleContent(firstArticle._id));
+        // dispatch(fetchArticleContent(firstArticle._id));
       });
     });
   }
 
-  _onCategoriesClick(e) {
+  onCategoryClick = (e) => {
     const {dispatch} = this.props;
     const targetCategory = e.target;
     const selectCategory = targetCategory.innerHTML;
@@ -40,7 +38,7 @@ class Panel extends Component {
     targetCategory.className = categoryClassName + ' active';
   }
 
-  _onArticlesClick(e, key) {
+  onArticleClick = (e, key) => {
     const {dispatch} = this.props;
     const targetArticle = e.target;
     dispatch(fetchArticleContent(key));
@@ -51,13 +49,23 @@ class Panel extends Component {
     targetArticle.className = articleClassName + ' active';
   }
 
+  onArticleSave = (article) => {
+    const {dispatch} = this.props;
+    dispatch(saveArticle(article));
+  }
+
   render() {
     const {categories, articles, article} = this.props;
     return (
       <div>
         <CategoriesList onCategoryClick={this.onCategoryClick} categories={categories}></CategoriesList>
         <ArticleList onArticleClick={this.onArticleClick} articles={articles}></ArticleList>
-        <ArticleContent articleTitle={article.title}>{article.body}</ArticleContent>
+        <ArticleContent
+          onArticleSave={this.onArticleSave}
+          articleTitle={article.title}
+          >
+          {article.body}
+        </ArticleContent>
       </div>
     );
   }
