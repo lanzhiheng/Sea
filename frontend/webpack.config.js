@@ -40,6 +40,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     publicPath: '/dist/',
+    inline: true,
     compress: true,
     port: 9000
   }

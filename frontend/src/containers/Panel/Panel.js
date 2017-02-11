@@ -1,61 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCategories } from '../../actions/categories';
-import { fetchArticlesByCategories, fetchArticleContent } from '../../actions/articles';
 import './Panel.scss';
-import CategoriesList from '../../components/CategoriesList/CategoriesList';
+import CategoriesList from '../../containers/CategoriesList/CategoriesList';
 import ArticleList from '../../components/ArticleList/ArticleList';
 import ArticleContent from '../../components/ArticleContent/ArticleContent';
 
 class Panel extends Component {
   constructor() {
     super();
-    this.onCategoryClick = this._onCategoriesClick.bind(this);
-    this.onArticleClick = this._onArticlesClick.bind(this);
   }
 
   componentDidMount() {
-    const {dispatch} = this.props;
-    dispatch(fetchCategories()).then((json) => {
-      const firstCategory = json.data[0];
-      dispatch(fetchArticlesByCategories(firstCategory)).then((json) => {
-        const firstArticle = json.data[0];
-        dispatch(fetchArticleContent(firstArticle._id));
-      });
-    });
+
   }
 
-  _onCategoriesClick(e) {
-    const {dispatch} = this.props;
-    const targetCategory = e.target;
-    const selectCategory = targetCategory.innerHTML;
-    dispatch(fetchArticlesByCategories(selectCategory)).then((json) => {
-      let firstArticleId = json.data[0]['_id'];
-      dispatch(fetchArticleContent(firstArticleId));
-    });
-
-    let activeComponent = document.getElementsByClassName('categories')[0].getElementsByClassName('active')[0];
-    activeComponent.className = activeComponent.className.split(/\s+/).filter((x) => {return x !== 'active';}).join(' ');
-    let categoryClassName = targetCategory.className;
-    targetCategory.className = categoryClassName + ' active';
-  }
-
-  _onArticlesClick(e, key) {
-    const {dispatch} = this.props;
-    const targetArticle = e.target;
-    dispatch(fetchArticleContent(key));
-
-    let activeComponent = document.getElementsByClassName('articles')[0].getElementsByClassName('active')[0];
-    activeComponent.className = activeComponent.className.split(/\s+/).filter((x) => {return x !== 'active';}).join(' ');
-    let articleClassName = targetArticle.className;
-    targetArticle.className = articleClassName + ' active';
+  // 暂时没用
+  onArticlesClick = (e, key) => {
+    // const {dispatch} = this.props;
+    // const targetArticle = e.target;
+    // dispatch(fetchArticleContent(key));
+    //
+    // let activeComponent = document.getElementsByClassName('articles')[0].getElementsByClassName('active')[0];
+    // activeComponent.className = activeComponent.className.split(/\s+/).filter((x) => {return x !== 'active';}).join(' ');
+    // let articleClassName = targetArticle.className;
+    // targetArticle.className = articleClassName + ' active';
+    return [0, key];
   }
 
   render() {
-    const {categories, articles, article} = this.props;
+    const { articles, article} = this.props;
     return (
       <div>
-        <CategoriesList onCategoryClick={this.onCategoryClick} categories={categories}></CategoriesList>
+        <CategoriesList onCategoryClick={this.onCategoryClick}></CategoriesList>
         <ArticleList onArticleClick={this.onArticleClick} articles={articles}></ArticleList>
         <ArticleContent articleTitle={article.title}>{article.body}</ArticleContent>
       </div>

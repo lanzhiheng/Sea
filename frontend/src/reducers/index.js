@@ -4,7 +4,9 @@ import {
   REQUEST_ARTICLES_BY_CATEGORIES,
   RECEIVE_ARTICLES_BY_CATEGORIES,
   REQUEST_ARTICLE_CONTENT,
-  RECEIVE_ARTICLE_CONTENT
+  RECEIVE_ARTICLE_CONTENT,
+  REQUEST_POST_CATEGORIES,
+  SUCCESS_POST_CATEGORIES
 } from '../constants/ActionTypes';
 
 const initialState = {
@@ -41,6 +43,14 @@ export default function seaApp(state=initialState, action) {
     return Object.assign({}, state, {
       isFetching: false,
       article: action.article
+    });
+  case REQUEST_POST_CATEGORIES:
+    return Object.assign({}, state, {
+      isFetching: true
+    });
+  case SUCCESS_POST_CATEGORIES:
+    return Object.assign({}, state, {
+      isFetching: false
     });
   default:
     return state;

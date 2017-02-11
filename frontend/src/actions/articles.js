@@ -37,7 +37,7 @@ const fetchArticlesByCategoriesUtil = (category) => {
   return dispatch => {
     dispatch(requestArticlesByCategory());
     return fetch(`http://127.0.0.1:8000/api/${CONFIG_API.categories}/${category}/articles`, {
-      mode: 'cors'
+      mode: 'cors',
     }).then(response => response.json()).then(
       (json) => {
         dispatch(receiveArticlesByCategories(json.data));
